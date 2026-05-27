@@ -4,11 +4,11 @@ import { initCursor } from './js/cursor.js';
 import { initAudio } from './js/audio.js';
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     initCursor();
-//     initAudio();
-//     console.log("Сайт Ночки успешно инициализирован!");
-// });
+document.addEventListener('DOMContentLoaded', () => {
+    initCursor();
+    initAudio();
+    console.log("Сайт Ночки успешно инициализирован!");
+});
   
 //--------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
