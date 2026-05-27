@@ -1,0 +1,472 @@
+
+/* ЦВЕТОВЫЕ ПЕРЕМЕННЫЕ */
+:root {
+    --bg-color: #FAF7F2;
+    --text-color: #1A1A1B;
+    --accent-green: #8FA882;
+    --accent-pink: #E8C5C8;
+    --card-bg: #FFFFFF;
+    --eye-color: #E6B06C;
+    --transition: all 0.4s ease;
+}
+
+/* Темная тема (Ночной режим) */
+body.dark-theme {
+    --bg-color: #111112;
+    --text-color: #FAF7F2;
+    --card-bg: #1A1A1B;
+    --eye-color: #92e071;
+}
+
+/* Базовые стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    cursor: none; /* Скрываем стандартный курсор для эффекта лазера */
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: var(--transition);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: 'Lora', serif;
+}
+
+/* Лазерный курсор */
+#laser-pointer {
+    width: 12px;
+    height: 12px;
+    background-color: #ff3333;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 8px #ff3333, 0 0 15px #ff3333;
+    transform: translate(-50%, -50%);
+    transition: width 0.1s, height 0.1s;
+}
+
+/* Контейнер */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Хедер */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--accent-pink);
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Lora', serif;
+}
+
+/* Переключатель темы */
+.theme-btn {
+    background: var(--card-bg);
+    border: 2px solid var(--text-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: var(--text-color);
+    font-weight: bold;
+    transition: var(--transition);
+}
+.theme-btn:hover {
+    background-color: var(--accent-pink);
+    transform: scale(1.05);
+}
+
+/* Главный экран */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 70vh;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.hero-info {
+    flex: 1;
+}
+
+.hero-info h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-info p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+/* Кнопка Погладить */
+.btn-pet {
+    background-color: var(--accent-pink);
+    color: #1A1A1B;
+    border: none;
+    padding: 15px 32px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+
+.btn-pet:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(232, 197, 200, 0.4);
+    background-color: #dfb2b6;
+}
+
+/* Иллюстрация кошки (SVG) */
+.hero-art {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.cat-svg {
+    width: 320px;
+    height: 320px;
+}
+
+.pupil {
+    transition: transform 0.05s linear;
+}
+
+/* Карточки о котике */
+.about-section {
+    padding: 60px 0;
+}
+
+.about-section h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(232, 197, 200, 0.15);
+}
+
+.card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--accent-green);
+}
+
+.card ul {
+    list-style: none;
+}
+
+.card ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.card ul li::before {
+    content: "🐾";
+    margin-right: 10px;
+    font-size: 0.9rem;
+}
+
+/* Раздел Расписания с изображениями */
+.timeline-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.timeline-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+}
+
+.timeline-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.time-node {
+    background-color: var(--card-bg);
+    border: 2px solid var(--accent-pink);
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.time-node.active {
+    background-color: var(--accent-pink);
+    color: #1A1A1B;
+}
+
+.timeline-display {
+    background-color: var(--card-bg);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    text-align: left;
+}
+
+.timeline-text {
+    flex: 1.2;
+}
+
+.timeline-text h3 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: var(--accent-green);
+}
+
+.timeline-media {
+    flex: 0.8;
+    height: 180px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.timeline-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* ГАЛЕРЕЯ */
+.gallery-section {
+    padding: 60px 0;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    margin-bottom: 40px;
+    opacity: 0.7;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    transition: var(--transition);
+    background-color: var(--card-bg);
+}
+
+.gallery-item:hover {
+    transform: scale(1.03);
+    box-shadow: 0 10px 25px rgba(232, 197, 200, 0.3);
+}
+
+.gallery-item img, .gallery-item video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Пропускает клики на оверлей */
+}
+
+/* Значок видео */
+.video-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Оверлей при наведении */
+.gallery-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(26, 26, 27, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay-text {
+    color: #FAF7F2;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay-text {
+    transform: translateY(0);
+}
+
+/* ЛАЙТБОКС (ВСПЛЫВАЮЩИЙ ПРОСМОТР) */
+.lightbox {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(17, 17, 18, 0.95);
+    z-index: 10000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 80%;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.lightbox-content img, .lightbox-content video {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px; right: 40px;
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: var(--accent-pink);
+}
+
+/* Эффект вылетающих сердечек */
+.heart {
+    position: absolute;
+    color: var(--accent-pink);
+    font-size: 24px;
+    pointer-events: none;
+    animation: flyUp 1s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes flyUp {
+    0% {
+        transform: translateY(0) scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120px) scale(1.4) rotate(20deg);
+        opacity: 0;
+    }
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid var(--accent-pink);
+    margin-top: 60px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding: 20px 0;
+    }
+    .hero-info h1 {
+        font-size: 2.5rem;
+    }
+    .timeline-display {
+        flex-direction: column;
+        text-align: center;
+    }
+    .timeline-media {
+        width: 100%;
+        height: 150px;
+    }
+    * {
+        cursor: auto !important; /* На смартфонах возвращаем стандартный палец */
+    }
+    #laser-pointer {
+        display: none;
+    }
+}

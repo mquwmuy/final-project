@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ночка — Уютная Тень</title>
+        <!-- Подключаем шрифты -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <script type="module" src="script.js"></script>
+    </head>
+    <body>
+        <!-- Наша красная лазерная указка -->
+        <div id="laser-pointer"></div>
+        <div class="container">
+            <!-- Шапка сайта -->
+            <header>
+                <div class="logo">🐾 Cozy Shadow</div>
+                <button class="theme-btn" id="theme-toggle">
+                    Режим: День ☀️
+                </button>
+            </header>
+
+            <!-- Главный экран -->
+            <main>
+                <section class="hero">
+                    <div class="hero-info">
+                        <h1>Знакомьтесь, это Аврора</h1>
+                        <p>
+                            Домашняя микро-пантера, которая умеет идеально
+                            маскироваться в темноте, превращаться в жидкость и
+                            профессионально требовать еду в 5 утра.
+                        </p>
+                        <button class="btn-pet" id="pet-btn">
+                            Погладить Аврору
+                        </button>
+                    </div>
+
+                    <div class="hero-art">
+                        <!-- Рисунок кота на чистом SVG. Будем управлять зрачками через JS -->
+                        <svg
+                            class="cat-svg"
+                            viewBox="0 0 200 200"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <!-- Тело/Голова кошки -->
+                            <path
+                                d="M 40,160 Q 40,80 100,80 Q 160,80 160,160 Z"
+                                fill="#1A1A1B"
+                            />
+                            <!-- Левое ухо -->
+                            <polygon
+                                points="50,90 40,30 80,75"
+                                fill="#1A1A1B"
+                            />
+                            <polygon
+                                points="54,85 46,40 76,73"
+                                fill="#E8C5C8"
+                            />
+                            <!-- Правое ухо -->
+                            <polygon
+                                points="150,90 160,30 120,75"
+                                fill="#1A1A1B"
+                            />
+                            <polygon
+                                points="146,85 154,40 124,73"
+                                fill="#E8C5C8"
+                            />
+                            <!-- Голова (круг поверх) -->
+                            <circle cx="100" cy="110" r="55" fill="#1A1A1B" />
+
+                            <!-- ЛЕВЫЙ ГЛАЗ -->
+                            <ellipse
+                                cx="75"
+                                cy="105"
+                                rx="16"
+                                ry="12"
+                                fill="var(--eye-color)"
+                                style="transition: fill 0.3s"
+                            />
+                            <!-- Зрачок левого глаза -->
+                            <g id="left-pupil" class="pupil">
+                                <ellipse
+                                    cx="75"
+                                    cy="105"
+                                    rx="4"
+                                    ry="10"
+                                    fill="#1A1A1B"
+                                />
+                            </g>
+
+                            <!-- ПРАВЫЙ ГЛАЗ -->
+                            <ellipse
+                                cx="125"
+                                cy="105"
+                                rx="16"
+                                ry="12"
+                                fill="var(--eye-color)"
+                                style="transition: fill 0.3s"
+                            />
+                            <!-- Зрачок правого глаза -->
+                            <g id="right-pupil" class="pupil">
+                                <ellipse
+                                    cx="125"
+                                    cy="105"
+                                    rx="4"
+                                    ry="10"
+                                    fill="#1A1A1B"
+                                />
+                            </g>
+
+                            <!-- Розовый носик кошака -->
+                            <polygon
+                                points="95,120 105,120 100,125"
+                                fill="#E8C5C8"
+                            />
+                            <!-- Усики -->
+                            <line
+                                x1="50"
+                                y1="125"
+                                x2="20"
+                                y2="120"
+                                stroke="var(--text-color)"
+                                stroke-width="1.5"
+                                opacity="0.4"
+                            />
+                            <line
+                                x1="50"
+                                y1="130"
+                                x2="15"
+                                y2="132"
+                                stroke="var(--text-color)"
+                                stroke-width="1.5"
+                                opacity="0.4"
+                            />
+                            <line
+                                x1="150"
+                                y1="125"
+                                x2="180"
+                                y2="120"
+                                stroke="var(--text-color)"
+                                stroke-width="1.5"
+                                opacity="0.4"
+                            />
+                            <line
+                                x1="150"
+                                y1="130"
+                                x2="185"
+                                y2="132"
+                                stroke="var(--text-color)"
+                                stroke-width="1.5"
+                                opacity="0.4"
+                            />
+                        </svg>
+                    </div>
+                </section>
+
+                <!-- Карточки  -->
+                <section class="about-section">
+                    <h2>Личное дело черной кошки</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>📋 Параметры</h3>
+                            <ul>
+                                <li><strong>Имя: </strong> Аврора</li>
+                                <li><strong>Возраст: </strong> 8 лет</li>
+                                <li>
+                                    <strong>Должность: </strong> Уничтожитель вселенной
+                                </li>
+                                <li><strong>Страхи: </strong> Робот-пылесос</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>📦 Любимые места</h3>
+                            <ul>
+                                <li>Шкаф</li>
+                                <li>Коробка из-под обуви</li>
+                                <li>Уголок моей кровати</li>
+                                <li>Ванная комната</li>
+                                <li>Тазик</li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>✨ Особенности</h3>
+                            <ul>
+                                <li>Сливается с черным ковром</li>
+                                <li>Какает в ванну</li>
+                                <li>Белые губки, как у таджички</li>
+                                <li>Не всегда попадает в лоток</li>
+                                <li>Взгляд будто всех ненавидит</li>
+                                <li>Любит странные позы</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Расписание дня (Интерактивный DOM) -->
+                
+            <section class="timeline-section">
+                <h2>Повседневная жизнь Авроры</h2>
+                <div class="timeline-nav" id="timeline-nav">
+                    <!-- Кнопки времени создадутся через JS -->
+                </div>
+                <div class="timeline-display" id="timeline-display">
+                    <div class="timeline-text">
+                        <h3 id="display-time">08:00</h3>
+                        <p id="display-desc">Время будить кожаного мешка громким мяуканьем.</p>
+                    </div>
+                    <div class="timeline-media">
+                        <img id="display-img" src="" alt="Иллюстрация действия">
+                    </div>
+                </div>
+            </section>
+                 <!-- ГАЛЕРЕЯ С ФОТО И ВИДЕО -->
+            <section class="gallery-section">
+                <h2>Мини-галерея мини-быдло</h2>
+                <p class="section-subtitle">Нажмите на фото или видео, чтобы открыть во весь экран</p>
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Элементы галереи сгенерируются через JS -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Всплывающее окно просмотра медиа (Лайтбокс) -->
+        <div class="lightbox" id="lightbox">
+            <span class="lightbox-close" id="lightbox-close">&times;</span>
+            <div class="lightbox-content" id="lightbox-content">
+                <!-- Сюда JS вставит активную картинку или видео -->
+            </div>
+        </div>
+            </main>
+
+            <footer>
+                <p>
+                    © <span id="year"></span> Создано с заботой, любовью и
+                    кошачьей мятой. Все права на тыгыдык защищены.
+                </p>
+            </footer>
+        </div>
+    </body>
+</html>
