@@ -1,8 +1,7 @@
 
 // Ждем полной загрузки структуры документа
-import { initCursor } from '/cursor.js';
-import { initAudio } from '/audio.js';
-// import { initUI } from '/ui.js';
+import { initCursor } from './js/cursor.js';
+import { initAudio } from './js/audio.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();
