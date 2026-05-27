@@ -1,17 +1,72 @@
 
 // Ждем полной загрузки структуры документа
-import { initCursor } from '/cursor.js';
-import { initAudio } from '/audio.js';
-// import { initUI } from '/ui.js';
-
-document.addEventListener('DOMContentLoaded', () => {
-    initCursor();
-    initAudio();
-    console.log("Сайт Ночки успешно инициализирован!");
-});
 
 
+// document.addEventListener('DOMContentLoaded', () => {
+//     initCursor();
+//     initAudio();
+//     console.log("Сайт Ночки успешно инициализирован!");
+// });
+    const laser = document.getElementById('laser-pointer');
+    const leftPupil = document.getElementById('left-pupil');
+    const rightPupil = document.getElementById('right-pupil');
 
+    document.addEventListener('mousemove', (e) => {
+        if (laser) {
+            laser.style.left = e.clientX + 'px';
+            laser.style.top = e.clientY + 'px';
+        }
+        trackEye(e.clientX, e.clientY, 75, 105, leftPupil);
+        trackEye(e.clientX, e.clientY, 125, 105, rightPupil);
+    });
+
+    function trackEye(mouseX, mouseY, eyeCenterX, eyeCenterY, pupilElement) {
+        const svg = document.querySelector('.cat-svg');
+        if (!svg || !pupilElement) return;
+        const rect = svg.getBoundingClientRect();
+        const absX = rect.left + (eyeCenterX / 200) * rect.width;
+        const absY = rect.top + (eyeCenterY / 200) * rect.height;
+        const angle = Math.atan2(mouseY - absY, mouseX - absX);
+        const dist = Math.min(4, Math.hypot(mouseX - absX, mouseY - absY) / 30);
+        pupilElement.style.transform = `translate(${Math.cos(angle)*dist}px, ${Math.sin(angle)*dist}px)`;
+    }
+}
+
+
+//------------------------------------------------------------------
+
+ function initAudio() {
+    const petBtn = document.getElementById('pet-btn');
+    let audioCtx = null;
+
+    petBtn?.addEventListener('click', (e) => {
+        createHeart(e.clientX, e.clientY);
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        playPurr(audioCtx);
+    });
+
+    function playPurr(ctx) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(35, ctx.currentTime);
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        osc.connect(gain).connect(ctx.destination);
+        osc.start();
+        setTimeout(() => osc.stop(), 2000);
+    }
+
+    function createHeart(x, y) {
+        const h = document.createElement('div');
+        h.className = 'heart';
+        h.innerHTML = '❤️';
+        h.style.left = `${x-12}px`; h.style.top = `${y-12}px`;
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 1000);
+    }
+}
+//--------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
 
     // ДИНАМИЧЕСКИЙ ВВОД ТЕКУЩЕГО ГОДА В ФУТЕР
