@@ -2,22 +2,19 @@
 // Ждем полной загрузки структуры документа
 import { initCursor } from './js/cursor.js';
 import { initAudio } from './js/audio.js';
+import { initKey } from './js/key.js';
 
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     initCursor();
-//     initAudio();
-//     console.log("Сайт Ночки успешно инициализирован!");
-// });
+document.addEventListener('DOMContentLoaded', () => {
+    initCursor();
+    initAudio();
+    initKey();
+    console.log("Сайт Авроры работает");
+});
   
 //--------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ДИНАМИЧЕСКИЙ ВВОД ТЕКУЩЕГО ГОДА В ФУТЕР
-    const yearSpan = document.getElementById('year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
 
     // 1. ДВИЖЕНИЕ КРАСНОГО ЛАЗЕРА И СЛЕЖКА ГЛАЗ
     const laser = document.getElementById('laser-pointer');
@@ -60,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         pupilElement.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
     }
 
-    // При клике лазер визуально "сжимается"
+    // При клике лазер сжимается
     document.addEventListener('mousedown', () => {
         if (laser) {
             laser.style.width = '6px';
@@ -89,74 +86,33 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-
-
-
-    // if (navContainer && displayTime && displayDesc) {
-    //     // Плавный переход для текста
-    //     displayTime.style.transition = "opacity 0.2s ease";
-    //     displayDesc.style.transition = "opacity 0.2s ease";
-
-    //     // Генерируем кнопки времени в DOM
-    //     scheduleData.forEach((item, index) => {
-    //         const button = document.createElement('button');
-    //         button.classList.add('time-node');
-    //         button.textContent = item.time;
-            
-    //         if (index === 0) {
-    //             button.classList.add('active');
-    //             updateDisplay(item);
-    //         }
-
-    //         button.addEventListener('click', () => {
-    //             document.querySelectorAll('.time-node').forEach(btn => btn.classList.remove('active'));
-    //             button.classList.add('active');
-    //             updateDisplay(item);
-    //         });
-
-    //         navContainer.appendChild(button);
-    //     });
-    // }
-
-    function updateDisplay(item) {
-        displayTime.style.opacity = 0;
-        displayDesc.style.opacity = 0;
-        
-        setTimeout(() => {
-            displayTime.textContent = `${item.time} — ${item.title}`;
-            displayDesc.textContent = item.desc;
-            displayTime.style.opacity = 1;
-            displayDesc.style.opacity = 1;
-        }, 200);
-    }
 });
 
-    // 2. РАСПИСАНИЕ С ФОТОГРАФИЯМИ (Медиа таймлайн)
+    // 2. расписание дня
     const scheduleData = [
         { 
-            time: "05:00", 
-            title: "⏰ Время Тыгыдыка", 
-            desc: "Устроить забег на сверхзвуковой скорости. Громко пошуршать пакетом и заглянуть в бездну за диваном.",
+            time: "06:00", 
+            title: "☀️ Утречко", 
+            desc: "Устроить забег на дикой скорости. Громко покопать лоток и прыгать по стенам.",
             img: "./img_video/Аврора1.jpg"
         },
         { 
-            time: "08:00", 
-            title: "🍳 Завтрак мечты", 
-            desc: "Громко требовать еду, понюхать ее и уйти спать на ноутбук.",
+            time: "10:00", 
+            title: "💤Сон", 
+            desc: "Небольшая передышка(шанс упасть с подоконника/полки 50%)",
             img: "./img_video/Аврора2.jpg"
         },
         { 
-            time: "12:00", 
-            title: "💤 Сонное затмение", 
-            desc: "Спать 6 часов подряд в неестественной для живого существа позе 'калачик'.",
-            img: "./img_video/Аврора5.jpg"
+            time: "15:00", 
+            title: "💢 ВездеСущее зло", 
+            desc: "Смотреть на всех с высока, делать презрительным взгляд, восхищаться собой",
+            img: "./img_video/Аврора4.jpg"
         },
         { 
-            time: "18:00", 
-            title: "👀 Охота", 
-            desc: "Пристально смотреть в пустой угол стены и пугать хозяина своим загадочным видом.",
-            img: "./img_video/Аврора4.jpg"
+            time: "20:00", 
+            title: "❤️ 2 минуты нежности", 
+            desc: "Придти к любимому человеку, чтобы он тебя погладил",
+            img: "./img_video/Аврора5.jpg"
         }
     ];
 
@@ -256,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryGrid.appendChild(item);
         });
     }
-
+//открыли
     function openLightbox(media) {
         if (!lightbox || !lightboxContent) return;
         lightboxContent.innerHTML = '';
@@ -279,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = 'hidden'; // Запрещаем прокрутку страницы сзади
     }
 
-    // Закрытие лайтбокса
+    // Закрыли
     const closeLightbox = () => {
         if (!lightbox) return;
         lightbox.classList.remove('active');

@@ -10,7 +10,7 @@
     --transition: all 0.4s ease;
 }
 
-/* Темная тема (Ночной режим) */
+/* Темная тема */
 body.dark-theme {
     --bg-color: #111112;
     --text-color: #FAF7F2;
@@ -23,7 +23,7 @@ body.dark-theme {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    cursor: none; /* Скрываем стандартный курсор для эффекта лазера */
+    cursor: none; /* Скрываем стандартный курсор */
 }
 
 body {
